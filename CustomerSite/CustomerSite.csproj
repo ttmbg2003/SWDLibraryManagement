@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LMSEntity\LMSEntity.csproj" />
+    <ProjectReference Include="..\LMSService\LMSService.csproj" />
+  </ItemGroup>
+
 </Project>
