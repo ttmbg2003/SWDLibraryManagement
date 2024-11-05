@@ -1,0 +1,116 @@
+--Create Database LMS_SWD
+--Drop Database LMS_SWD
+use LMS_SWD
+CREATE TABLE Category (
+    Id NVARCHAR(20) PRIMARY KEY,
+    CName NVARCHAR(50) NOT NULL,
+    Status INT
+);
+CREATE TABLE Role (
+    Id NVARCHAR(20) PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Status INT
+);
+CREATE TABLE [User] (
+    UId NVARCHAR(20) PRIMARY KEY,
+    RId NVARCHAR(20) NOT NULL,
+	FullName NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(50),
+    Phone NVARCHAR(15),
+    Status INT,
+    FOREIGN KEY (RId) REFERENCES Role(Id)
+);
+CREATE TABLE Book (
+    BookId NVARCHAR(20) PRIMARY KEY,
+    CId NVARCHAR(20) NOT NULL,
+    BName NVARCHAR(50) NOT NULL,
+    Author NVARCHAR(50),
+    Quantity NVARCHAR(200),
+    QuantityInStock FLOAT,
+    TotalPage FLOAT,
+    CoverPrice FLOAT,
+    Description NVARCHAR(200),
+    Status FLOAT,
+    FOREIGN KEY (CId) REFERENCES Category(Id)
+);
+
+CREATE TABLE Supplier (
+    SId NVARCHAR(20) PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(50),
+    Phone NVARCHAR(15),
+    Address NVARCHAR(255)
+);
+CREATE TABLE ImportBill (
+    Id NVARCHAR(20) PRIMARY KEY,
+    SId NVARCHAR(20) NOT NULL,
+    TotalAmount INT,
+    TotalPrice FLOAT,
+    Date DATETIME,
+    FOREIGN KEY (SId) REFERENCES Supplier(SId)
+);
+CREATE TABLE ImportBillBook (
+    ImId NVARCHAR(20) NOT NULL,
+    BId NVARCHAR(20) NOT NULL,
+    Quantity INT NOT NULL,
+    Price FLOAT,
+    Note NVARCHAR(MAX),
+    PRIMARY KEY (ImId, BId),
+    FOREIGN KEY (ImId) REFERENCES ImportBill(Id),
+    FOREIGN KEY (BId) REFERENCES Book(BookId)
+);
+
+CREATE TABLE Wishlist (
+    Id NVARCHAR(20) PRIMARY KEY,
+    UId NVARCHAR(20) NOT NULL,
+    DateTime DATETIME,
+    FOREIGN KEY (UId) REFERENCES [User](UId)
+);
+CREATE TABLE WishlistItem (
+    WId NVARCHAR(20) NOT NULL,
+    BId NVARCHAR(20) NOT NULL,
+    PRIMARY KEY (WId, BId),
+    FOREIGN KEY (WId) REFERENCES Wishlist(Id),
+    FOREIGN KEY (BId) REFERENCES Book(BookId)
+);
+
+
+
+CREATE TABLE Blog (
+    BId NVARCHAR(20) PRIMARY KEY,
+    StaffId NVARCHAR(20) NOT NULL,
+    Title NVARCHAR(255) NOT NULL,
+    Content NVARCHAR(MAX),
+    CreatedDate DATETIME,
+    Status INT,
+    FOREIGN KEY (StaffId) REFERENCES [User](UId)
+);
+
+CREATE TABLE BorrowInformation (
+    OId NVARCHAR(20) PRIMARY KEY,
+    RId NVARCHAR(20) NOT NULL,
+    StaffId NVARCHAR(20) NOT NULL,
+    BorrowDate DATETIME,
+    DueDate DATETIME,
+    TotalAmount INT,
+    Note NVARCHAR(MAX),
+    ReturnDate DATETIME,
+    Status NVARCHAR(50) CHECK (Status IN ('APPROVED', 'CANCELLED', 'CLOSED', 'PENDING')),
+    FOREIGN KEY (StaffId) REFERENCES [User](UId)
+);
+CREATE TABLE BookCopy (
+    Id varchar(255) primary key,
+    BId NVARCHAR(20),
+	Condition NVARCHAR(20),
+    Status int,
+    FOREIGN KEY (BId) REFERENCES Book(BookId),
+);
+CREATE TABLE BorrowDetail (
+    BrId NVARCHAR(20),
+    BcpId VARCHAR(255),
+    FOREIGN KEY (BrId) REFERENCES BorrowInformation(OId),
+    FOREIGN KEY (BcpId) REFERENCES BookCopy(Id),
+	Primary Key(BrId,BcpId)
+);
+
+
