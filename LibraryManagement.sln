@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminSite", "LibraryManagem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerSite", "CustomerSite\CustomerSite.csproj", "{39E3BD02-E0E9-4916-9A64-A1FEF86DAE27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSEntity", "LMSEntity\LMSEntity.csproj", "{A81C09F6-3379-48B2-A2FE-97D2CC0B9F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMSEntity", "LMSEntity\LMSEntity.csproj", "{A81C09F6-3379-48B2-A2FE-97D2CC0B9F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSService", "LMSService\LMSService.csproj", "{B10B5545-6BBE-4BC2-847D-B11D8565B8BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMSService", "LMSService\LMSService.csproj", "{B10B5545-6BBE-4BC2-847D-B11D8565B8BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{BABD215D-B879-433F-8796-88925C250E93}"
+	ProjectSection(SolutionItems) = preProject
+		DBSctipy.txt = DBSctipy.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
