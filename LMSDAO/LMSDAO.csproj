@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LMSEntity\LMSEntity.csproj" />
+  </ItemGroup>
+
 </Project>

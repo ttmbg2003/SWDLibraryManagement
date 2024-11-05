@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LMSEntity\LMSEntity.csproj" />
-    <ProjectReference Include="..\LMSService\LMSService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Book\" />
   </ItemGroup>
 
 </Project>
