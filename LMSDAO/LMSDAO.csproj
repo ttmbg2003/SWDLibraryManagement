@@ -10,4 +10,8 @@
     <ProjectReference Include="..\LMSEntity\LMSEntity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SupplierDAO\" />
+  </ItemGroup>
+
 </Project>

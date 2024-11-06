@@ -1,3 +1,4 @@
+using LMSDAO.DAO;
 using LMSEntity.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<LMS_SWDContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDBConStr"))); // Ensure this connection string is correct and defined in appsettings.json
+builder.Services.AddScoped<ISupplierDAO, SupplierDAO>();
+builder.Services.AddDbContext<LMS_SWDContext>(); // Ensure this connection string is correct and defined in appsettings.json
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,7 +24,6 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
