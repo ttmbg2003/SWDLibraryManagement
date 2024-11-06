@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
 builder.Services.AddDbContext<LMS_SWDContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyDBConStr"))); // Ensure this connection string is correct and defined in appsettings.json
 var app = builder.Build();

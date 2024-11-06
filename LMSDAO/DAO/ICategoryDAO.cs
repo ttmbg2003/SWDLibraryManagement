@@ -10,5 +10,10 @@ namespace LMSDAO.DAO
     public interface ICategoryDAO
     {
         public List<Category> GetCategories();
+        void AddCategory(Category category);
+
+        // Phương thức xóa danh mục dựa trên Id
+        bool DeleteCategory(string categoryId);
+        public bool VerifyBookInformation(Category category);
     }
 }

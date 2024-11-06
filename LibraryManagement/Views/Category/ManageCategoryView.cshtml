@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LMSEntity.Models.Category>
+
+@{
+    ViewData["Title"] = "Category List";
+}
+
+<h2>Category List</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div>
+    <a asp-action="ManageCategoryView" asp-route-sortBy="Id" asp-route-sortOrder="@((ViewData["SortOrder"] as string) == "asc" ? "desc" : "asc")" class="btn btn-outline-secondary">
+        Sort by ID @(ViewData["SortOrder"] as string == "asc" ? "↓" : "↑")
+    </a>
+    <a asp-action="ManageCategoryView" asp-route-sortBy="Cname" asp-route-sortOrder="@((ViewData["SortOrder"] as string) == "asc" ? "desc" : "asc")" class="btn btn-outline-secondary">
+        Sort by Name @(ViewData["SortOrder"] as string == "asc" ? "↓" : "↑")
+    </a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category ID</th>
+            <th>Category Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.Cname</td>
+                <td>@(category.Status == 1 ? "Active" : "Inactive")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddCategory" class="btn btn-primary">Add New Category</a>
