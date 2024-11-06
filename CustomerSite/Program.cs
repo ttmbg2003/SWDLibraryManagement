@@ -1,7 +1,11 @@
+using LMSDAO.DAO;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IWishListDAO, WishListDAO>();
 
 var app = builder.Build();
 

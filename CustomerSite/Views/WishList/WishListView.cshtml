@@ -1,0 +1,66 @@
+﻿@model LMSEntity.Models.Wishlist
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<h3>Wish-List</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var book in Model.Bids) {
+            <tr>
+                <td></td>
+                <td>@book.Bname</td>
+                <td>@book.Author</td>
+                <td>
+                    <button class="btn btn-danger delete-button"
+                            data-rid="@Model.Id"
+                            data-bid="@book.BookId">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const rid = this.getAttribute('data-rid');
+            const bid = this.getAttribute('data-bid');
+
+            console.log(rid)
+            console.log(bid)
+
+
+            swal({
+                title: "Are you sure?",
+                text: "This action cannot be undone!",
+                icon: "warning",
+                showCancelButton: true,
+                buttons: ["No, keep it", "Yes, delete it!"],
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = '@Url.Action("Delete", "Wishlist", new { bid = "__BID__" })'.replace("__BID__", bid);
+                }
+            });
+        });
+    });
+</script>
+
